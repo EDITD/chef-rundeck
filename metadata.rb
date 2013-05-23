@@ -1,4 +1,4 @@
-name             "chef-rundeck"
+name             "rundeck"
 maintainer       "Simon Johansson"
 maintainer_email "simon@simonjohansson.com"
 license          "All rights reserved"

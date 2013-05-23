@@ -23,8 +23,7 @@ Vagrant.configure("2") do |config|
       }
     }
     chef.run_list = [
-        "recipe[chef-rundeck::mysql]",
-        "recipe[chef-rundeck::default]"
+        "recipe[rundeck]"
     ]
   end
 end

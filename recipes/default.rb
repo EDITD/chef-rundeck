@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: chef-rundeck
+# Cookbook Name:: rundeck
 # Recipe:: default
 #
-# Copyright (C) 2013 YOUR_NAME
+# Copyright (C) 2013 Simon Johansson
 #
 # All rights reserved - Do Not Redistribute
 #
