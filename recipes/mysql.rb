@@ -1,3 +1,4 @@
+include_recipe "apt"
 include_recipe "database::mysql"
 
 if node['rundeck']['mysql']['host'] == "localhost"
