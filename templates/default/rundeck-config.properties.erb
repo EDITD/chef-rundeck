@@ -1,0 +1,8 @@
+loglevel.default=INFO
+rdeck.base=/var/lib/rundeck
+rss.enabled=true
+
+dataSource.dbCreate = update
+dataSource.url = jdbc:mysql://<%= @mysql_host %>/<%= @mysql_database %>?autoReconnect=true
+dataSource.username = <%= @mysql_user %>
+dataSource.password = <%= @mysql_password %>
