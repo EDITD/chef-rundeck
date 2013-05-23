@@ -20,6 +20,24 @@ dpkg_package "#{Chef::Config['file_cache_path']}/rundeck-#{node['rundeck']['vers
   action :install
 end
 
+if node['rundeck']['use_mysql']
+  include_recipe "rundeck::mysql"
+
+  # Configure it to talk to mysql
+  template "/etc/rundeck/rundeck-config.properties" do
+    source "rundeck-config.properties.erb"
+    owner "root"
+    group "root"
+    variables({
+                :mysql_host => node['rundeck']['mysql']['host'],
+                :mysql_database => node['rundeck']['mysql']['database'],
+                :mysql_user => node['rundeck']['mysql']['user'],
+                :mysql_password => node['rundeck']['mysql']['password']
+              })
+    notifies :restart, "service[rundeckd]"
+  end
+end
+
 service 'rundeckd' do
   provider Chef::Provider::Service::Upstart if platform?('ubuntu') && node['platform_version'].to_f >= 12.04
   supports :status => true, :restart => true
