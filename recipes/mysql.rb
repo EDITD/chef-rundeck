@@ -1,7 +1,7 @@
-include_recipe "apt"
-include_recipe "database::mysql"
-
 if node['rundeck']['mysql']['host'] == "localhost"
+  include_recipe "apt"
+  include_recipe "database::mysql"
+
   # Install mysql
   include_recipe "mysql::server"
 
@@ -31,5 +31,4 @@ if node['rundeck']['mysql']['host'] == "localhost"
     privileges [:all]
     action :grant
   end
-
 end
