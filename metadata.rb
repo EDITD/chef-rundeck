@@ -1,8 +1,7 @@
 name             "chef-rundeck"
-maintainer       "YOUR_NAME"
-maintainer_email "YOUR_EMAIL"
+maintainer       "Simon Johansson"
+maintainer_email "simon@simonjohansson.com"
 license          "All rights reserved"
 description      "Installs/Configures chef-rundeck"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.1.0"
-
