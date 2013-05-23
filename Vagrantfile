@@ -15,7 +15,8 @@ Vagrant.configure("2") do |config|
       :mysql => {
         :server_root_password => 's3cr3t',
         :server_debian_password => 's3cr3t',
-        :server_repl_password => 's3cr3t'
+        :server_repl_password => 's3cr3t',
+        :bind_address => '0.0.0.0'
       }
     }
     chef.run_list = [
