@@ -1,5 +1,4 @@
 if node['rundeck']['mysql']['host'] == "localhost"
-  include_recipe "apt"
   include_recipe "database::mysql"
 
   # Install mysql
