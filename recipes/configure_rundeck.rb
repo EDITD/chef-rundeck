@@ -33,4 +33,7 @@ node['rundeck']['projects'].each do |project|
                 :name => project['name']
               })
   end
+
+  # Todo, user project['node_search'] to find nodes to populate
+  # resources.xml with.
 end
