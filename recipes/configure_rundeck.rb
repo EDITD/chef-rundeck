@@ -34,6 +34,15 @@ node['rundeck']['projects'].each do |project|
               })
   end
 
+  if project['ssh_key']
+    file "/var/rundeck/projects/#{project['name']}/.id_rsa" do
+      content project['ssh_key']
+      owner "rundeck"
+      group "rundeck"
+      mode 00600
+    end
+  end
+
   # Todo, user project['node_search'] to find nodes to populate
   # resources.xml with.
 end
