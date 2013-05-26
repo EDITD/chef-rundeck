@@ -13,3 +13,6 @@ if node['rundeck']['use_mysql']
 end
 include_recipe "rundeck::install_rundeck"
 include_recipe "rundeck::configure_rundeck"
+if node['rundeck']['use_nginx']
+  include_recipe "rundeck::nginx"
+end
