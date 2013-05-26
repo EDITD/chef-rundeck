@@ -13,3 +13,24 @@ if node['rundeck']['use_mysql']
     notifies :restart, "service[rundeckd]"
   end
 end
+
+# Set up all the projects.
+node['rundeck']['projects'].each do |project|
+
+  directory "/var/rundeck/projects/#{project['name']}/etc" do
+    owner "rundeck"
+    group "rundeck"
+    mode 0755
+    recursive true
+    action :create
+  end
+
+  template "/var/rundeck/projects/#{project['name']}/etc/project.properties" do
+    source "rundeck_project.erb"
+    owner "rundeck"
+    group "rundeck"
+    variables({
+                :name => project['name']
+              })
+  end
+end

@@ -20,6 +20,16 @@ Vagrant.configure("2") do |config|
         :server_debian_password => 's3cr3t',
         :server_repl_password => 's3cr3t',
         :bind_address => '0.0.0.0'
+      },
+      :rundeck => {
+        :projects => [{
+                        :name => "test_project",
+                        :ssh_key => "blablabla"
+                      },
+                      {
+                        :name => "test_project2",
+                        :ssh_key => "blablabla"
+                      }]
       }
     }
     chef.run_list = [

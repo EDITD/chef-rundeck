@@ -1,0 +1,7 @@
+#Project <%= @name %> configuration, generated
+#Sun May 26 17:30:08 UTC 2013
+service.NodeExecutor.default.provider=jsch-ssh
+project.ssh-keypath=/var/lib/rundeck/<%= @name %>/.id_rsa
+project.name=<%= @name %>
+project.resources.file=/var/rundeck/projects/<%= @name %>/etc/resources.xml
+service.FileCopier.default.provider=jsch-scp
