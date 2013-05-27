@@ -43,6 +43,20 @@ node['rundeck']['projects'].each do |project|
     end
   end
 
-  # Todo, user project['node_search'] to find nodes to populate
-  # resources.xml with.
+  # Use project['node_search'] to find nodes to populate resources.xml with.
+  if project['node_search']
+
+    if not project['ssh_user']
+      raise 'If you are using node_search you must set ssh_user!'
+    end
+
+    template "/var/rundeck/projects/#{project['name']}/etc/reources.xml" do
+      source "resources.xml.erb"
+      owner "rundeck"
+      group "rundeck"
+      variables({
+                  :nodes => search(:node, project['node_search'])
+                })
+    end
+  end
 end
