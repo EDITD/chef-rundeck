@@ -50,13 +50,11 @@ node['rundeck']['projects'].each do |project|
       raise 'If you are using node_search you must set ssh_user!'
     end
 
-    template "/var/rundeck/projects/#{project['name']}/etc/reources.xml" do
+    template "/var/rundeck/projects/#{project['name']}/etc/resources.xml" do
       source "resources.xml.erb"
       owner "rundeck"
       group "rundeck"
-      variables({
-                  :nodes => search(:node, project['node_search'])
-                })
+      variables({:found_nodes => search(:node, project['node_search'])})
     end
   end
 end
