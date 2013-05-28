@@ -35,8 +35,9 @@ node['rundeck']['projects'].each do |project|
   end
 
   if project['ssh_key']
-    file "/var/rundeck/projects/#{project['name']}/.id_rsa" do
-      content project['ssh_key']
+    template "/var/rundeck/projects/#{project['name']}/.id_rsa" do
+      source "id_rsa.erb"
+      variables({:ssh_key_lines => project['ssh_key'].lines.map(&:chomp)})
       owner "rundeck"
       group "rundeck"
       mode 00600
@@ -54,7 +55,8 @@ node['rundeck']['projects'].each do |project|
       source "resources.xml.erb"
       owner "rundeck"
       group "rundeck"
-      variables({:found_nodes => search(:node, project['node_search'])})
+      variables({:found_nodes => search(:node, project['node_search']),
+                  :ssh_user => project['ssh_user']})
     end
   end
 end
