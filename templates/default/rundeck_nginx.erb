@@ -1,11 +1,11 @@
-upstream rundeck {
+upstream <%= node[:fqdn] %> {
     server localhost:4440 fail_timeout=0;
 }
 
 server {
     listen   0.0.0.0:80;
     location / {
-    proxy_pass http://rundeck;
+    proxy_pass http://<%= node[:fqdn] %>;
     break;
     }
 }
