@@ -11,6 +11,11 @@ nginx_site "default" do
   enable false
 end
 
+nginx_site "000-default" do
+  enable false
+end
+
+
 nginx_site "rundeck" do
   enable true
   notifies  :restart, 'service[nginx]'
