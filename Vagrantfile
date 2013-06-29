@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
   config.ssh.max_tries = 40
   config.ssh.timeout   = 120
   config.berkshelf.enabled = true
+  config.omnibus.chef_version = "11.4.4"
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
