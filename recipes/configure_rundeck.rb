@@ -17,31 +17,8 @@ end
 # Set up all the projects.
 node['rundeck']['projects'].each do |project|
 
-  directory "/var/rundeck/projects/#{project['name']}/etc" do
-    owner "rundeck"
-    group "rundeck"
-    mode 0755
-    recursive true
-    action :create
-  end
-
-  template "/var/rundeck/projects/#{project['name']}/etc/project.properties" do
-    source "rundeck_project.erb"
-    owner "rundeck"
-    group "rundeck"
-    variables({
-                :name => project['name']
-              })
-  end
-
-  if project['ssh_key']
-    template "/var/rundeck/projects/#{project['name']}/.id_rsa" do
-      source "id_rsa.erb"
-      variables({:ssh_key_lines => project['ssh_key'].lines.map(&:chomp)})
-      owner "rundeck"
-      group "rundeck"
-      mode 00600
-    end
+  rundeck project['name'] do
+    ssh_key project['ssh_key']
   end
 
   # Use project['node_search'] to find nodes to populate resources.xml with.
