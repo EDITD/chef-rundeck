@@ -34,6 +34,7 @@ Vagrant.configure("2") do |config|
       }
     }
     chef.run_list = [
+        "recipe[chef-solo-search]",
         "recipe[rundeck]"
     ]
   end
