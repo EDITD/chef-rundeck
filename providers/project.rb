@@ -30,5 +30,14 @@ action :create do
     end
   end
 
+  if new_resource.nodes
+    template "#{project_root}/etc/resources.xml" do
+      source "resources.xml.erb"
+      owner "rundeck"
+      group "rundeck"
+      variables({:found_nodes => new_resource.nodes.map(&:to_hash),
+                  :ssh_user => new_resource.ssh_user})
+    end
+  end
 end
 

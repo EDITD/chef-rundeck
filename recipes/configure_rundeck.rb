@@ -16,27 +16,9 @@ end
 
 # Set up all the projects.
 node['rundeck']['projects'].each do |project|
-
-  key_obj = data_bag_item('ssh_keys', "test_key")
-
   rundeck_project project['name'] do
     ssh_key data_bag_item('ssh_keys', "test_key")['private_key']
     ssh_user "ubuntu"
-  end
-
-  # Use project['node_search'] to find nodes to populate resources.xml with.
-  if project['node_search']
-
-    if not project['ssh_user']
-      raise 'If you are using node_search you must set ssh_user!'
-    end
-
-    template "/var/rundeck/projects/#{project['name']}/etc/resources.xml" do
-      source "resources.xml.erb"
-      owner "rundeck"
-      group "rundeck"
-      variables({:found_nodes => search(:node, project['node_search']),
-                  :ssh_user => project['ssh_user']})
-    end
+    nodes search(:node, "name:*")
   end
 end
