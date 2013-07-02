@@ -1,5 +1,7 @@
 action :create do
 
+  Chef::Log.warn(new_resource.ssh_key.class)
+
   project_name = new_resource.project_name || new_resource.name
   project_root = "/var/rundeck/projects/#{project_name}"
 
