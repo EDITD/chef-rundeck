@@ -17,8 +17,11 @@ end
 # Set up all the projects.
 node['rundeck']['projects'].each do |project|
 
-  rundeck project['name'] do
-    ssh_key project['ssh_key']
+  key_obj = data_bag_item('ssh_keys', "test_key")
+
+  rundeck_project project['name'] do
+    ssh_key data_bag_item('ssh_keys', "test_key")['private_key']
+    ssh_user "ubuntu"
   end
 
   # Use project['node_search'] to find nodes to populate resources.xml with.
