@@ -3,6 +3,6 @@
 <project>
   <node name="localhost" description="Rundeck server node" tags="" hostname="localhost" osArch="amd64" osFamily="unix" osName="Linux" osVersion="3.2.0-23-generic" username="rundeck"/>
   <% @found_nodes.each do |found_node| -%>
-  <node name="<%= "#{found_node[:fqdn]}" %>" type="Node" description="<%= "#{found_node[:name]}" %>" hostname="<%= "#{found_node[:fqdn]}" %>" username="<%= @ssh_user %>" tags="<%= "#{found_node["chef_environment"]}, #{found_node["run_list"].join(',')}" %>" />
+  <node name="<%= "#{found_node["fqdn"]}" %>" type="Node" description="<%= "#{found_node["name"]}" %>" hostname="<%= "#{found_node["fqdn"]}" %>" username="<%= @ssh_user %>" tags="<%= "#{found_node["chef_environment"]}, #{found_node["run_list"].join(',')}" %>" />
   <% end -%>
 </project>
