@@ -5,8 +5,7 @@ license          "MIT"
 description      "Installs/Configures rundeck"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 supports         "ubuntu", ">= 12.04"
-version          "0.2.0"
-
+version          "0.2.1"
 
 depends "java", ">= 1.10.2"
 depends "database", ">= 1.3.12"

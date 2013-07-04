@@ -15,26 +15,15 @@ Vagrant.configure("2") do |config|
   config.omnibus.chef_version = "11.4.4"
 
   config.vm.provision :chef_solo do |chef|
-    chef.data_bags_path = "data_bags"
     chef.json = {
       :mysql => {
         :server_root_password => 's3cr3t',
         :server_debian_password => 's3cr3t',
         :server_repl_password => 's3cr3t',
         :bind_address => '0.0.0.0'
-      },
-      :rundeck => {
-        :projects => [{
-                        :name => "test_project"
-                      },
-                      {
-                        :name => "test_project2",
-                        :ssh_key => "blablabla"
-                      }]
       }
     }
     chef.run_list = [
-        "recipe[chef-solo-search]",
         "recipe[rundeck]"
     ]
   end
