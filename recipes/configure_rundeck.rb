@@ -13,12 +13,3 @@ if node['rundeck']['use_mysql']
     notifies :restart, "service[rundeckd]"
   end
 end
-
-# Set up all the projects.
-node['rundeck']['projects'].each do |project|
-  rundeck_project project['name'] do
-    ssh_key data_bag_item('ssh_keys', "test_key")['private_key']
-    ssh_user "ubuntu"
-    nodes search(:node, "name:*")
-  end
-end
