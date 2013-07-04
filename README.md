@@ -2,9 +2,9 @@
 
 This cookbook has only been tested on Ubuntu 12.04.
 
-By default this cookbook will download rundeck and mysql and configure rundeck to talk to mysql and proxy forward with nginx.
+By default this cookbook will download rundeck, mysql and nginx and configure rundeck to talk to mysql and proxy forward with nginx.
 
-Have a look at the Vagrantfile to see how to automagically add projects.
+This cookbook should be wrapped, to see how this would look like have a look at https://github.com/simonjohansson/chef-rundeck-wrapper.
 
 # Requirements
 
