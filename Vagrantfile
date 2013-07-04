@@ -12,8 +12,10 @@ Vagrant.configure("2") do |config|
   config.ssh.max_tries = 40
   config.ssh.timeout   = 120
   config.berkshelf.enabled = true
+  config.omnibus.chef_version = "11.4.4"
 
   config.vm.provision :chef_solo do |chef|
+    chef.data_bags_path = "data_bags"
     chef.json = {
       :mysql => {
         :server_root_password => 's3cr3t',
@@ -23,8 +25,7 @@ Vagrant.configure("2") do |config|
       },
       :rundeck => {
         :projects => [{
-                        :name => "test_project",
-                        :ssh_key => "blablabla"
+                        :name => "test_project"
                       },
                       {
                         :name => "test_project2",
@@ -33,6 +34,7 @@ Vagrant.configure("2") do |config|
       }
     }
     chef.run_list = [
+        "recipe[chef-solo-search]",
         "recipe[rundeck]"
     ]
   end
