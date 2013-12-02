@@ -1,4 +1,4 @@
-default['rundeck']['version'] = '1.5.3-1-GA'
+default['rundeck']['version'] = '1.6.2-1-GA'
 default['rundeck']['deb_url'] = "http://download.rundeck.org/deb/rundeck-#{node['rundeck']['version']}.deb"
 
 default['rundeck']['use_mysql'] = true
