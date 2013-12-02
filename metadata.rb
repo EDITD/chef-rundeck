@@ -1,6 +1,6 @@
 name             "rundeck"
-maintainer       "Simon Johansson"
-maintainer_email "simon@simonjohansson.com"
+maintainer       "EDITD devs"
+maintainer_email "dev@editd.com"
 license          "MIT"
 description      "Installs/Configures rundeck"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
